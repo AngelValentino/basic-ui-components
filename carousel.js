@@ -24,7 +24,7 @@ export function handleSliderScroll() {
     nextBtn.style.display = 'none';
   } 
   else if (currentScrollLeft < maxScrollLeft) {
-    // There's still scroll left to the right
+    // ScrollLeft hasn't reached the maximum
     nextBtn.style.display = 'initial';
   }
 
@@ -34,6 +34,6 @@ export function handleSliderScroll() {
     prevBtn.style.display = 'none';
   } 
   else if (currentScrollLeft !== 0)
-    // There's still scroll left to the left
+    // ScrollLeft hasn't reached the start
     prevBtn.style.display = 'initial';
 }
