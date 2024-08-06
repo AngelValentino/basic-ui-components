@@ -3,11 +3,11 @@ export const nextBtn = document.getElementById('next-btn');
 export const carousel = document.querySelector('.carousel__slider');
 
 export function slideLeft() {
-  carousel.scrollLeft -= carousel.children[0].clientWidth + 30;
+  carousel.scrollLeft -= carousel.children[0].clientWidth + 34;
 }
 
 export function slideRight() {
-  carousel.scrollLeft += carousel.children[0].clientWidth + 30;
+  carousel.scrollLeft += carousel.children[0].clientWidth + 34;
 }
 
 export function handleSliderScroll() {
@@ -17,7 +17,6 @@ export function handleSliderScroll() {
   // Current scroll position
   const currentScrollLeft = carousel.scrollLeft;
 
-  console.log('scroll')
   if (currentScrollLeft === maxScrollLeft) {
     // Scrolled to the maximum width
     console.log('Scrolled to the maximum width!');
