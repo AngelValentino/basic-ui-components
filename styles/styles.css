@@ -34,14 +34,38 @@ button {
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  font-size: 1.1rem;
   line-height: 0;
   height: 40px;
   width: 40px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+  background-color: rgb(32, 32, 32);
+  color: white;
+}
+
+.carousel__chevron-icon {
+  width: 1.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel__btn:is(:hover, :focus-visible) {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel__btn:active {
+  transform: translateY(-50%) scale(1);
 }
 
 #next-btn {
-  right: 0;
+  right: -15px;
+}
+
+#prev-btn {
+  left: -15px;
 }
 
 #prev-btn {
@@ -57,7 +81,6 @@ button {
   scroll-snap-type: x mandatory;
   gap: 30px;
   list-style: none;
-  border: 2px solid blue;
 }
 
 .carousel__slider li {
@@ -69,7 +92,6 @@ button {
   transition: border var(--base-transition-duration);
   flex-shrink: 0;
   flex-grow: 0;
-  border: 2px solid red;
   overflow: hidden;
   display: inline;
 }
@@ -199,7 +221,7 @@ button {
 }
 
 .accordion__icon {
-  width: 1.5rem;
+  width: 1.4rem;
   transition: transform 0.25s;
   will-change: transform;
 }
@@ -216,24 +238,22 @@ button {
 }
 
 
-.accordion-content-wrapper {
+.accordion__content-wrapper {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.25s;
 }
 
-.accordion-panel.active .accordion-content-wrapper {
+.accordion-panel.active .accordion__content-wrapper {
   grid-template-rows: 1fr;
 }
 
-.accordion-content-wrapper > div {
+.accordion__content-wrapper > div {
   overflow: hidden;
   grid-row: 1 / span 2;
 }
 
-.accordion-content {
-  /* background-color: grey; */
-  /* color: white; */
+.accordion__content {
   padding: 5px 15px 15px;
 }
 

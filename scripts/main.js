@@ -23,7 +23,7 @@ const accordionContainerLm = document.getElementById('accordion-container');
 accordionContainerLm.innerHTML = accordionData.map(({ id, title, description }) => (
   `
     <li class="accordion-panel">
-      <div aria-controls="accordion-content-wrapper-${id}" aria-expanded="false" class="accordion__title-container">
+      <div aria-controls="accordion__content-wrapper-${id}" aria-expanded="false" class="accordion__title-container">
         <h2 class="accordion-title">
           ${title}
         </h2>
@@ -31,9 +31,9 @@ accordionContainerLm.innerHTML = accordionData.map(({ id, title, description }) 
           <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="m112 328l144-144l144 144" />
         </svg>
       </div>
-      <div id="accordion-content-wrapper-${id}" class="accordion-content-wrapper" aria-hidden="true">
+      <div id="accordion__content-wrapper-${id}" class="accordion__content-wrapper" aria-hidden="true">
         <div>
-          <div class="accordion-content">
+          <div class="accordion__content">
           ${description}
           </div>
         </div>
@@ -42,7 +42,8 @@ accordionContainerLm.innerHTML = accordionData.map(({ id, title, description }) 
   `
 )).join('');
 
-//TODO Refactor and improve carousel syles and logic
+//TODO Add image slider UI component
+//TODO Add tabs UI component
 
 // Carousel events
 carousel.addEventListener('scroll', handleSliderScroll);
@@ -54,4 +55,4 @@ openModalBtn.addEventListener('click', openModal);
 
 // Accordion events
 const accordionPanelLms = document.querySelectorAll('.accordion-panel');
-addAccordionEvents(accordionPanelLms, '.accordion-panel', '.accordion__title-container', true);
+addAccordionEvents(accordionPanelLms, '.accordion-panel', '.accordion__title-container', '.accordion__content-wrapper', true);

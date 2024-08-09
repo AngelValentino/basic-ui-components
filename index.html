@@ -37,8 +37,12 @@
     <!-- SLIDER CAROUSEL -->
 
     <div class="carousel">
-      <button class="carousel__btn"  id="prev-btn">&lt;</button>
-      <ul class="carousel__slider">
+      <button aria-controls="carousel__slider" class="carousel__btn"  id="prev-btn">
+        <svg class="carousel__chevron-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 6l-6 6l6 6" />
+        </svg>
+      </button>
+      <ul id="carousel__slider" class="carousel__slider">
         <li><img src="https://placehold.co/400?text=1" alt=""></li>
         <li><img src="https://placehold.co/400?text=2" alt=""></li>
         <li><img src="https://placehold.co/400?text=3" alt=""></li>
@@ -48,7 +52,11 @@
         <li><img src="https://placehold.co/400?text=7" alt=""></li>
         <li><img src="https://placehold.co/400?text=8" alt=""></li>
       </ul>
-      <button class="carousel__btn" id="next-btn">&gt;</button>
+      <button aria-controls="carousel__slider" class="carousel__btn" id="next-btn">
+        <svg class="carousel__chevron-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 6l6 6l-6 6" />
+        </svg>
+      </button>
     </div>
 
     <!-- END OF SLIDER CAROUSEL -->

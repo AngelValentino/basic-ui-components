@@ -28,7 +28,7 @@ export const accordionData =  [
   }
 ]
 
-export function addAccordionEvents(accordionPanelLms, panelClass, titleClass, keepOthersClosed) {
+export function addAccordionEvents(accordionPanelLms, panelClass, titleClass, contentClass, keepOthersClosed) {
   accordionPanelLms.forEach(panel => {
   
     panel.addEventListener('click', e => {
@@ -45,8 +45,8 @@ export function addAccordionEvents(accordionPanelLms, panelClass, titleClass, ke
         if (panel !== e.target.closest(panelClass)) {
           panel.classList.remove('active');
           // set ariaExpanded and ariaHidden to initial values
-          const titleLm = panel.querySelector('.accordion__title-container');
-          const contentLm = panel.querySelector('.accordion-content-wrapper');
+          const titleLm = panel.querySelector(titleClass);
+          const contentLm = panel.querySelector(contentClass);
           titleLm.ariaExpanded = false;
           contentLm.ariaHidden = true;
         }
