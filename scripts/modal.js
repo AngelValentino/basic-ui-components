@@ -1,4 +1,4 @@
-import { toggleModalEvents, toggleModalFocus } from "./utls.js";
+import { toggleModalEvents, toggleModalFocus } from "./utils.js";
 
 let closeModalTimId;
 
