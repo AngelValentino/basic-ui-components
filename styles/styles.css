@@ -323,6 +323,11 @@ button {
   bottom: 12px;
   display: flex;
   gap: 10px;
+  list-style: none;
+}
+
+.image-slider__controls li {
+  line-height: 0;
 }
 
 .image-slider__control-btn {
@@ -331,7 +336,6 @@ button {
   height: 13px;
   border-radius: 50%;
   border: none;
-  /* cursor: pointer; */
 }
 
 .image-slider__control-btn.active {
