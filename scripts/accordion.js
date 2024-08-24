@@ -28,29 +28,81 @@ export const accordionData =  [
   }
 ]
 
-export function addAccordionEvents(accordionPanelLms, panelClass, titleClass, contentClass, keepOthersClosed) {
-  accordionPanelLms.forEach(panel => {
-  
-    panel.addEventListener('click', e => {
-      let isPanelActive;
-      // Target is accordion title
-      if (e.target.closest(titleClass)) {
-        const titleLm = e.target.closest(titleClass);
-        isPanelActive = panel.classList.toggle('active');
-        titleLm.ariaExpanded = isPanelActive;
-        titleLm.nextElementSibling.ariaHidden = !isPanelActive;
-      }
+export class Accordion {
+  constructor(root, accordionData, keepOthersClosed = true) {
+   // Error check to ensure root element and accordionData are provided
+    if (!root) throw new Error("Root element is required");
+    if (!accordionData || accordionData.length === 0) throw new Error("Accordion Array Data element is required and must not be empty");
 
-      keepOthersClosed && accordionPanelLms.forEach(panel => {
-        if (panel !== e.target.closest(panelClass)) {
-          panel.classList.remove('active');
-          // set ariaExpanded and ariaHidden to initial values
-          const titleLm = panel.querySelector(titleClass);
-          const contentLm = panel.querySelector(contentClass);
-          titleLm.ariaExpanded = false;
-          contentLm.ariaHidden = true;
+    // Generate the HTML for the accordion panels and insert it into the root element
+    root.innerHTML = Accordion.generateAccordionPanels(accordionData);
+
+    // DOM references
+    this.lms = {
+      accordionPanelLms: root.querySelectorAll('.accordion-panel')
+    }
+
+    // Add event listener
+    this.addAccordionEvents(this.lms.accordionPanelLms, keepOthersClosed);
+  }
+
+  addAccordionEvents(accordionPanelLms, keepOthersClosed) {
+    accordionPanelLms.forEach(panel => {
+    
+      panel.addEventListener('click', e => {
+        let isPanelActive;
+        
+        // Check if the click target is an accordion title
+        if (e.target.closest('.accordion__title-container')) {
+          const titleLm = e.target.closest('.accordion__title-container');
+
+          // Toggle the 'active' class on the clicked panel
+          isPanelActive = panel.classList.toggle('active');
+
+          // Update ARIA attributes based on the panel's state
+          titleLm.ariaExpanded = isPanelActive;
+          titleLm.nextElementSibling.ariaHidden = !isPanelActive;
         }
-      });
-    })
-  });
+  
+        // If `keepOthersClosed` is true, close other panels
+        keepOthersClosed && accordionPanelLms.forEach(panel => {
+          if (panel !== e.target.closest('.accordion-panel')) {
+            // Remove the 'active' class from the inactive pannels
+            panel.classList.remove('active');
+
+            // Set ARIA attributes to initial values
+            const titleLm = panel.querySelector('.accordion__title-container');
+            const contentLm = panel.querySelector('.accordion__content-wrapper');
+            titleLm.ariaExpanded = false;
+            contentLm.ariaHidden = true;
+          }
+        });
+      })
+    });
+  }
+
+  // Generates the HTML for the accordion panels based on the provided data
+  static generateAccordionPanels(accordionData) {
+    return accordionData.map(({ id, title, description }) => (
+      `
+        <li class="accordion-panel">
+          <div aria-controls="accordion__content-wrapper-${id}" aria-expanded="false" class="accordion__title-container">
+            <h2 class="accordion-title">
+              ${title}
+            </h2>
+            <svg aria-hidden="true" focusable="false" role="presentation" class="accordion__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="m112 328l144-144l144 144" />
+            </svg>
+          </div>
+          <div id="accordion__content-wrapper-${id}" class="accordion__content-wrapper" aria-hidden="true">
+            <div>
+              <div class="accordion__content">
+              ${description}
+              </div>
+            </div>
+          </div>
+        </li>
+      ` 
+    )).join('');
+  }
 }
