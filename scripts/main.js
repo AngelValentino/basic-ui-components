@@ -18,21 +18,15 @@ import {
 } from './modal.js';
 
 import { 
-  initControls, 
-  initSlider, 
-  setSlide, 
-  updateSliderControls, 
-  scrollRight, 
-  scrollLeft,
-  addSwipeEventsToSlider
+  Slider,
+  imagesUrls
 } from './slider.js';
 
 
 const openModalBtn = document.getElementById('open-modal-btn');
 const accordionContainerLm = document.getElementById('accordion-container');
-
 const imageSliderLm = document.getElementById('image-slider');
-const imageSliderControlsLm = document.getElementById('image-slider__controls');
+
 
 accordionContainerLm.innerHTML = accordionData.map(({ id, title, description }) => (
   `
@@ -57,31 +51,19 @@ accordionContainerLm.innerHTML = accordionData.map(({ id, title, description }) 
 )).join('');
 
 
+//TODO Refactor components into classes
 //TODO Add tabs
 
-// Initialize slider
-initSlider();
-initControls();
-updateSliderControls();
+// Image slider
+new Slider(imageSliderLm, imagesUrls);
 
-// Image slider events
-imageSliderControlsLm.addEventListener('click', setSlide);
-
-imageSliderLm.addEventListener('click', e => {
-  if (e.target.closest('.image-slider__prev-btn')) {
-    scrollLeft();
-  } 
-  else if (e.target.closest('.image-slider__next-btn')) {
-    scrollRight();
-  }
-});
-
-addSwipeEventsToSlider();
-
-// Carousel events
+// Carousel
 carousel.addEventListener('scroll', handleSliderScroll);
 prevBtn.addEventListener('click', slideLeft);
 nextBtn.addEventListener('click', slideRight);
+
+
+
 
 // Modal event
 openModalBtn.addEventListener('click', openModal);
