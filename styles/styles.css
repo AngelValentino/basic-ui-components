@@ -61,15 +61,12 @@ button {
   transform: translateY(-50%) scale(1);
 }
 
-#next-btn {
+.carousel__next-btn {
   right: -15px;
 }
 
-#prev-btn {
+.carousel__prev-btn {
   left: -15px;
-}
-
-#prev-btn {
   display: none;
 }
 

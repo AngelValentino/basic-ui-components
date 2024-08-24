@@ -162,7 +162,6 @@ export class Slider {
   
   // Generate the complete HTML structure for the slider component
   static generateSlider(images, imageIndex, id) {
-    console.log(id)
     return (
       `
         <div class="image-slider__img-container">

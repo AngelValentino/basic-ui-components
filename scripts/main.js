@@ -1,10 +1,6 @@
 import { 
-  handleSliderScroll, 
-  slideLeft, 
-  slideRight, 
-  carousel, 
-  prevBtn, 
-  nextBtn
+  Carousel,
+  carouselImages
 } 
 from './carousel.js'
 
@@ -26,6 +22,7 @@ import {
 const openModalBtn = document.getElementById('open-modal-btn');
 const accordionContainerLm = document.getElementById('accordion-container');
 const imageSliderLm = document.getElementById('image-slider');
+const carouselLm = document.getElementById('carousel');
 
 
 accordionContainerLm.innerHTML = accordionData.map(({ id, title, description }) => (
@@ -51,23 +48,23 @@ accordionContainerLm.innerHTML = accordionData.map(({ id, title, description }) 
 )).join('');
 
 
-//TODO Refactor components into classes
+//TODO Refactor accordion into Accordion class component
 //TODO Add tabs
 
-// Image slider
-new Slider(imageSliderLm, imagesUrls);
-
 // Carousel
-carousel.addEventListener('scroll', handleSliderScroll);
-prevBtn.addEventListener('click', slideLeft);
-nextBtn.addEventListener('click', slideRight);
-
-
-
+new Carousel(carouselLm, carouselImages);
 
 // Modal event
 openModalBtn.addEventListener('click', openModal);
 
+
+
 // Accordion events
 const accordionPanelLms = document.querySelectorAll('.accordion-panel');
 addAccordionEvents(accordionPanelLms, '.accordion-panel', '.accordion__title-container', '.accordion__content-wrapper', true);
+
+
+
+
+// Image slider
+new Slider(imageSliderLm, imagesUrls);
