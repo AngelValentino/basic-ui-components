@@ -2,12 +2,12 @@ import {
   Carousel,
   carouselImages
 } 
-from './carousel.js'
+from './components/Carousel.js'
 
 import {
   accordionData,
   Accordion
-} from './accordion.js'
+} from './components/Accordion.js'
 
 import { 
   openModal 
@@ -16,7 +16,7 @@ import {
 import { 
   Slider,
   imagesUrls
-} from './slider.js';
+} from './components/Slider.js';
 
 const openModalBtn = document.getElementById('open-modal-btn');
 const accordionContainerLm = document.getElementById('accordion-container');
@@ -28,7 +28,7 @@ const carouselLm = document.getElementById('carousel');
 // Carousel
 new Carousel(carouselLm, carouselImages);
 
-// Modal event
+// Modal
 openModalBtn.addEventListener('click', openModal);
 
 // Accordion

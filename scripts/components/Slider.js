@@ -1,4 +1,4 @@
-import { handleSwipe } from "./utils.js";
+import { handleSwipe } from "../utils.js";
 
 export const imagesUrls = [
   {
