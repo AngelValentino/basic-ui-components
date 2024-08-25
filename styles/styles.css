@@ -342,3 +342,8 @@ button {
 .image-slider__control-btn:is(:hover, :focus-visible) {
   transform: scale(1.1);
 }
+
+
+.tabs__title.active {
+  background-color: red;
+}

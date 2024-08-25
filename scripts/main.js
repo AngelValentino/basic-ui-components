@@ -18,12 +18,21 @@ import {
   imagesUrls
 } from './components/Slider.js';
 
+import { 
+  Tabs, 
+  tabsData 
+} from './components/Tabs.js';
+
+const carouselLm = document.getElementById('carousel');
 const openModalBtn = document.getElementById('open-modal-btn');
 const accordionContainerLm = document.getElementById('accordion-container');
 const imageSliderLm = document.getElementById('image-slider');
-const carouselLm = document.getElementById('carousel');
+const tabsLm = document.getElementById('tabs');
 
-//TODO Add tabs
+//TODO Add styles to tabs
+//TODO Refactor accordion and improve styling
+//TODO imporve open modal button styling
+//TODO Change carousel images
 
 // Carousel
 new Carousel(carouselLm, carouselImages);
@@ -36,3 +45,6 @@ new Accordion(accordionContainerLm, accordionData);
 
 // Image slider
 new Slider(imageSliderLm, imagesUrls);
+
+// Tabs
+new Tabs(tabsLm, tabsData);

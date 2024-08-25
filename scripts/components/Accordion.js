@@ -30,7 +30,7 @@ export const accordionData =  [
 
 export class Accordion {
   constructor(root, accordionData, keepOthersClosed = true) {
-   // Error check to ensure root element and accordionData are provided
+    // Error check to ensure root element and accordionData are provided
     if (!root) throw new Error("Root element is required");
     if (!accordionData || accordionData.length === 0) throw new Error("Accordion Array Data element is required and must not be empty");
 
