@@ -12,6 +12,7 @@ export function openModal() {
   const closeModalBtn = document.getElementById('modal__close-btn');
 
   // Open modal
+  document.body.style.overflow = 'hidden'
   clearTimeout(closeModalTimId)
   modalContainerLm.style.display = 'flex';
   toggleModalFocus('add', closeModalBtn);
@@ -24,6 +25,7 @@ export function openModal() {
 
   // Close modal
   function closeModal() {
+    document.body.style.overflow = '';
     console.log('modal closed');
     modalContentLm.style.transform = 'scale(0)';
     modalOverlayLm.style.opacity = 0;

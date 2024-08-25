@@ -19,6 +19,10 @@ button {
   cursor: pointer;
 }
 
+p {
+  line-height: 1.5;
+}
+
 /* SLIDER CAROUSEL */
 
 .carousel {
@@ -344,6 +348,40 @@ button {
 }
 
 
-.tabs__title.active {
-  background-color: red;
+/* TABS */
+
+.tabs {
+  margin-top: 50px;
+  border: 1px solid #ccc;
 }
+
+.tabs__title-list {
+  background-color: #f1f1f1;
+  list-style: none;
+  display: flex;
+}
+
+.tabs__title {
+  background-color: transparent;
+  padding: 20px;
+  border: none;
+  transition: background-color 0.15s;
+}
+
+.tabs__title.active {
+  background-color: #ccc;
+}
+
+.tabs__title:is(:hover, :focus-visible) {
+  background-color: #ddd;
+}
+
+.tabs__panel {
+  padding: 20px 20px;
+}
+
+.tabs__panel h3 {
+  margin:  0 0 10px;
+}
+
+/* END OF TABS */

@@ -3,8 +3,9 @@ export const tabsData = [
     id: 1,
     title: 'Advertising',
     content: `
+      <h3>Advertising</h3>
       <p>
-        A marketing company can use targeted advertising to reach specific
+        Advertising allows a company to reach specific
         audiences based on demographics, interests, and behaviors. This
         can increase the effectiveness of advertising campaigns and
         improve return on investment.
@@ -15,8 +16,9 @@ export const tabsData = [
     id: 2,
     title: 'Socials',
     content: `
+      <h3>Socials</h3>
       <p>
-        A marketing company can leverage social media platforms to engage
+        Social media platforms are used to engage
         with customers and promote products or services. Social media can
         also be used to gather customer feedback and insights to inform
         future marketing strategies.
@@ -27,8 +29,9 @@ export const tabsData = [
     id: 3,
     title: 'Marketing',
     content: `
+      <h3>Marketing</h3>
       <p>
-        A marketing company can use content marketing to attract and
+        Marketing is used to attract and
         retain customers by creating and sharing valuable and relevant
         content. This can help to establish the company as a thought
         leader in its industry and build trust with customers.
@@ -39,8 +42,9 @@ export const tabsData = [
     id: 4,
     title: 'Email',
     content: `
+      <h3>Email</h3>
       <p>
-        A marketing company can use email campaigns to communicate with
+        Email campaigns are useful to communicate with
         customers and promote products or services. Email campaigns can be
         personalized and targeted to specific audiences to increase their
         effectiveness.
