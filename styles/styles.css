@@ -11,6 +11,7 @@ body {
   margin: 0 auto;
   padding: 50px 30px;
   font-family: sans-serif;
+  min-width: 400px;
 }
 
 button {
@@ -349,6 +350,7 @@ p {
   background-color: #f1f1f1;
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .tabs__title {
@@ -356,6 +358,7 @@ p {
   padding: 20px;
   border: none;
   transition: background-color 0.15s;
+  width: 100%;
 }
 
 .tabs__title.active {
@@ -369,6 +372,16 @@ p {
 
 .tabs__panel h3 {
   margin:  0 0 10px;
+}
+
+@media screen and (max-width: 470px) {
+  .tabs {
+    display: flex;
+  }
+
+  .tabs__title-list li {
+    flex: 1;
+  }
 }
 
 /* END OF TABS */
