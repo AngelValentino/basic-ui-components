@@ -29,9 +29,6 @@ const accordionContainerLm = document.getElementById('accordion-container');
 const imageSliderLm = document.getElementById('image-slider');
 const tabsLm = document.getElementById('tabs');
 
-//TODO improve component styles
-//TODO Change carousel images
-
 // Carousel
 new Carousel(carouselLm, carouselImages);
 
