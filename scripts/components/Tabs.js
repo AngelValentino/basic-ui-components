@@ -74,7 +74,7 @@ export class Tabs {
     this.setInitialActiveTab();
 
     // Add click event listener to handle tab switching
-    this.lms.tabTitleListLm.addEventListener('click', this.handleSwitchTab.bind(this));
+    this.lms.tabTitleListLm.addEventListener('click', this.switchTab.bind(this));
   }
 
   // Toggles active tab based on the currently selected tab
@@ -111,16 +111,11 @@ export class Tabs {
   }
 
   // Switches to the specified tab and updates the active title and panel
-  switchTab(tab) {
-    this.toggleTitle(tab);
-    this.togglePanel(tab);
-  } 
-
-  // Handles click events on tab titles to switch tabs
-  handleSwitchTab(e) {
+  switchTab(e) {
     const clickedTab = e.target.closest('.tabs__title');
     if (clickedTab) {
-      this.switchTab(clickedTab);
+      this.toggleTitle(clickedTab);
+      this.togglePanel(clickedTab);
     }
   }
 
@@ -142,8 +137,8 @@ export class Tabs {
       throw new Error('Position must be at least 1 and not be greater than the tabs data list length.')
     }
     position--; // Convert the position to an index
-    this.setInitialActiveTitle(position)
-    this.setInitialActivePanel(position)
+    this.setInitialActiveTitle(position);
+    this.setInitialActivePanel(position);
   }
 
   // Generates HTML for the tab titles based on tabsData

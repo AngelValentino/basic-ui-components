@@ -29,8 +29,7 @@ const accordionContainerLm = document.getElementById('accordion-container');
 const imageSliderLm = document.getElementById('image-slider');
 const tabsLm = document.getElementById('tabs');
 
-//TODO Refactor accordion and improve styling
-//TODO improve open modal button styling
+//TODO improve component styles
 //TODO Change carousel images
 
 // Carousel

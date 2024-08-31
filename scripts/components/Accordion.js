@@ -26,7 +26,7 @@ export const accordionData =  [
       </p>
     `
   }
-]
+];
 
 export class Accordion {
   constructor(root, accordionData, keepOthersClosed = true) {
@@ -37,48 +37,59 @@ export class Accordion {
     // Generate the HTML for the accordion panels and insert it into the root element
     root.innerHTML = Accordion.generateAccordionPanels(accordionData);
 
+    // Class variables
+    this.keepOthersClosed = keepOthersClosed;
+    
     // DOM references
     this.lms = {
-      accordionPanelLms: root.querySelectorAll('.accordion-panel')
+      accordionPanelLms: root.querySelectorAll('.accordion__content-wrapper'),
+      accordionLm: root
     }
 
     // Add event listener
-    this.addAccordionEvents(this.lms.accordionPanelLms, keepOthersClosed);
+    this.lms.accordionLm.addEventListener('click', this.switchPanel.bind(this))    
   }
 
-  addAccordionEvents(accordionPanelLms, keepOthersClosed) {
-    accordionPanelLms.forEach(panel => {
+
+  // Toggles the visibility of the panel associated with the clicked title
+  togglePanel(title) {
+    // Clear any previous timeouts for hiding panels
+    clearTimeout(this.activePanelHideTimId);
+    clearTimeout(this.othersPanelsHideTimId);
     
-      panel.addEventListener('click', e => {
-        let isPanelActive;
-        
-        // Check if the click target is an accordion title
-        if (e.target.closest('.accordion__title-container')) {
-          const titleLm = e.target.closest('.accordion__title-container');
+     // Get the ID of the active panel from the title's aria-controls attribute
+    const activePanelId = '#' + title.getAttribute("aria-controls");
+    const activePanel = this.lms.accordionLm.querySelector(activePanelId);
+    
+    // Loop through all the accordion panels and toggle them based on the active class
+    this.lms.accordionPanelLms.forEach(panel => {
+      if (panel === activePanel) {
+        // Toggle the active class on the parent element of the active panel
+        const isPanelActive = panel.parentElement.classList.toggle('active');
+      
+        // Update ARIA attributes to reflect the panel's state
+        panel.setAttribute('aria-hidden', !isPanelActive);
+        title.setAttribute('aria-expanded', isPanelActive);
+      } 
+      else {
+        if (this.keepOthersClosed) {
+          // Close the remaining open panels
+          panel.parentElement.classList.remove('active');
 
-          // Toggle the 'active' class on the clicked panel
-          isPanelActive = panel.classList.toggle('active');
-
-          // Update ARIA attributes based on the panel's state
-          titleLm.ariaExpanded = isPanelActive;
-          titleLm.nextElementSibling.ariaHidden = !isPanelActive;
+          // Add ARIA attributes
+          panel.setAttribute('aria-hidden', true);
+          title.setAttribute('aria-expanded', false);
         }
-  
-        // If `keepOthersClosed` is true, close other panels
-        keepOthersClosed && accordionPanelLms.forEach(panel => {
-          if (panel !== e.target.closest('.accordion-panel')) {
-            // Remove the 'active' class from the inactive pannels
-            panel.classList.remove('active');
-
-            // Set ARIA attributes to initial values
-            const titleLm = panel.querySelector('.accordion__title-container');
-            const contentLm = panel.querySelector('.accordion__content-wrapper');
-            titleLm.ariaExpanded = false;
-            contentLm.ariaHidden = true;
-          }
-        });
-      })
+      }
     });
+  }
+
+  // Handles panel switching when an accordion title is clicked
+  switchPanel(e) {
+    const clickedTitle = e.target.closest('.accordion__title');
+    if (clickedTitle) {
+      this.togglePanel(clickedTitle);
+    }
   }
 
   // Generates the HTML for the accordion panels based on the provided data
@@ -86,15 +97,15 @@ export class Accordion {
     return accordionData.map(({ id, title, description }) => (
       `
         <li class="accordion-panel">
-          <div aria-controls="accordion__content-wrapper-${id}" aria-expanded="false" class="accordion__title-container">
-            <h2 class="accordion-title">
+          <button aria-controls="accordion__content-wrapper-${id}" aria-expanded="false" class="accordion__title">
+            <p class="accordion-title">
               ${title}
-            </h2>
-            <svg aria-hidden="true" focusable="false" role="presentation" class="accordion__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            </p>
+            <svg focusable="false" role="presentation" class="accordion__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="m112 328l144-144l144 144" />
             </svg>
-          </div>
-          <div id="accordion__content-wrapper-${id}" class="accordion__content-wrapper" aria-hidden="true">
+          </button>
+          <div aria-hidden="true" id="accordion__content-wrapper-${id}" class="accordion__content-wrapper">
             <div>
               <div class="accordion__content">
               ${description}
