@@ -363,7 +363,7 @@ p {
 
 .tabs__title.active {
   background-color: #ccc;
-  border-bottom: 2px solid chartreuse;
+  border-bottom: 2px solid rgb(33, 197, 170);
 }
 
 .tabs__panel {
@@ -426,8 +426,12 @@ p {
   /* END OF IMAGE SLIDER */
 
   /* TABS */
-  .tabs__title:is(:hover, :focus-visible) {
+  .tabs__title:not(.active):is(:hover, :focus-visible) {
     background-color: #ddd;
+  }
+
+  .tabs__title.active:is(:hover, :focus-visible) {
+    cursor: default;
   }
   /* END OF TABS */
 }
