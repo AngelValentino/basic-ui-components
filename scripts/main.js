@@ -23,14 +23,14 @@ import {
   tabsData 
 } from './components/Tabs.js';
 
-const carouselLm = document.getElementById('carousel');
+const imageCarouselLm = document.getElementById('image-carousel');
 const openModalBtn = document.getElementById('open-modal-btn');
 const accordionContainerLm = document.getElementById('accordion-container');
 const imageSliderLm = document.getElementById('image-slider');
 const tabsLm = document.getElementById('tabs');
 
 // Carousel
-new Carousel(carouselLm, carouselImages);
+new Carousel(imageCarouselLm, carouselImages);
 
 // Modal
 openModalBtn.addEventListener('click', openModal);

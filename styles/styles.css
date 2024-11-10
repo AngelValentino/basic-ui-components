@@ -27,7 +27,6 @@ p {
 /* SLIDER CAROUSEL */
 
 .carousel {
-  display: flex;
   max-height: 300px;
   position: relative;
   margin-bottom: 50px;
@@ -80,21 +79,18 @@ p {
 
 .carousel__slider li {
   width: calc(100% / 5);
-  object-fit: cover;
   margin: 8px 0;
-  border: 2px solid #fff;
   border-radius: 3px;
-  transition: border var(--base-transition-duration);
   flex-shrink: 0;
   flex-grow: 0;
   overflow: hidden;
-  display: inline;
 }
 
 .carousel__slider img {
   display: block;
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 /* END OF SLIDER CAROUSEL */

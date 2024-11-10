@@ -34,16 +34,16 @@ export const carouselImages = [
 ]
 
 export class Carousel {
-  constructor(root, imagesArray) {
+  constructor(root, contentArray) {
     // Ensure the root element is provided
-    if (!root) throw new Error("Root element is required");
+    if (!root) throw new Error('Root element is required');
     // Ensure the root element has an id attribute
     if (!root.hasAttribute('id')) throw new Error('Root element does not have an id attribute');
     // Ensure images array is provided and not empty
-    if (!imagesArray || imagesArray.length === 0) throw new Error("Images Array element is required and must not be empty");
+    if (!contentArray || contentArray.length === 0) throw new Error('Content array element is required and must not be empty');
 
     // Generate the carousel HTML and insert it into the root element
-    root.innerHTML = Carousel.generateCarousel(imagesArray, root.id);
+    root.innerHTML = Carousel.generateCarousel(contentArray, root.id);
     
     // DOM references
     this.lms = {
@@ -53,23 +53,23 @@ export class Carousel {
     }
 
     // Add event listeners for scrolling and buttons hide/show logic
-    this.lms.sliderLm.addEventListener('scroll', this.handleSliderScroll.bind(this));
+    this.lms.sliderLm.addEventListener('scroll', this.setSliderButtonVisibility.bind(this));
     this.lms.prevBtn.addEventListener('click', this.slideLeft.bind(this));
     this.lms.nextBtn.addEventListener('click', this.slideRight.bind(this));
   }
 
   slideLeft() {
     // Adjust scroll position to the left, taking into account the item's width and gap property
-    this.lms.sliderLm.scrollLeft -= this.lms.sliderLm.children[0].clientWidth + 34;
+    this.lms.sliderLm.scrollLeft -= this.lms.sliderLm.children[0].clientWidth + 30;
   }
   
   slideRight() {
     // Adjust scroll position to the right, taking into account the item's width and gap property
-    this.lms.sliderLm.scrollLeft += this.lms.sliderLm.children[0].clientWidth + 34;
+    this.lms.sliderLm.scrollLeft += this.lms.sliderLm.children[0].clientWidth + 30;
   }
   
   // Handle the scroll event to show/hide navigation buttons based on scroll
-  handleSliderScroll() {
+  setSliderButtonVisibility() {
     // Maximum scrollable width of the carousel
     const maxScrollLeft = this.lms.sliderLm.scrollWidth - this.lms.sliderLm.clientWidth;
   
@@ -101,26 +101,25 @@ export class Carousel {
     return images.map(({ url, alt }) => (
       `
         <li>
-          <img src="${url}" alt=${alt}>
+          <img src="${url}" alt="${alt}">
         </li>
       `
     )).join('');
-
   }
 
   // Generate the complete HTML structure for the carousel
-  static generateCarousel(imagesArray, id) {
+  static generateCarousel(contentArray, id) {
     return (
       `
-        <button aria-controls="${id}__slider" class="carousel__btn carousel__prev-btn" >
-        <svg class="carousel__chevron-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 6l-6 6l6 6" />
-        </svg>
+        <button aria-controls="${id}" class="carousel__btn carousel__prev-btn">
+          <svg class="carousel__chevron-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 6l-6 6l6 6" />
+          </svg>
         </button>
-        <ul class="${id}__slider">
-          ${Carousel.generateImageList(imagesArray)}
+        <ul id="${id}" class="carousel__slider">
+          ${Carousel.generateImageList(contentArray)}
         </ul>
-        <button aria-controls="${id}__slider" class="carousel__btn carousel__next-btn">
+        <button aria-controls="${id}" class="carousel__btn carousel__next-btn">
           <svg class="carousel__chevron-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 6l6 6l-6 6" />
           </svg>
