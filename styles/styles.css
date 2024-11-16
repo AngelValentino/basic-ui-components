@@ -108,7 +108,7 @@ p {
   transition: background-color 0.15s;
 }
 
-.modal-container {
+.modal__container {
   position: fixed;
   inset: 0;
   z-index: 20;
@@ -118,7 +118,7 @@ p {
   display: none;
 }
 
-.modal-overlay {
+.modal__overlay {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.4);
@@ -126,7 +126,7 @@ p {
   transition: opacity 0.25s;
 }
 
-.modal-content {
+.modal__content {
   background-color: white;
   max-width: 350px;
   width: 100%;
@@ -189,7 +189,7 @@ p {
   border: 1px solid #e2e2e2;
 }
 
-.accordion-container .accordion__content-wrapper {
+.accordion__content-wrapper {
   border-bottom: 1px solid #e2e2e2;
 }
 
@@ -248,7 +248,6 @@ p {
 
 .accordion__content-wrapper > div {
   overflow: hidden;
-  grid-row: 1 / span 2;
 }
 
 .accordion__content {

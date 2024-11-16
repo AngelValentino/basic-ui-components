@@ -5,9 +5,9 @@ let closeModalTimId;
 export function openModal() {
   const eventsHandler = {};
 
-  const modalContainerLm = document.getElementById('modal-container');
-  const modalContentLm = document.getElementById('modal-content');
-  const modalOverlayLm = document.getElementById('modal-overlay');
+  const modalContainerLm = document.getElementById('modal__container');
+  const modalContentLm = document.getElementById('modal__content');
+  const modalOverlayLm = document.getElementById('modal__overlay');
   const modalBtns = [...modalContentLm.querySelectorAll('button')];
   const closeModalBtn = document.getElementById('modal__close-btn');
 
@@ -26,7 +26,6 @@ export function openModal() {
   // Close modal
   function closeModal() {
     document.body.style.overflow = '';
-    console.log('modal closed');
     modalContentLm.style.transform = 'scale(0)';
     modalOverlayLm.style.opacity = 0;
     modalContentLm.style.opacity = 0;
@@ -41,5 +40,5 @@ export function openModal() {
   }
  
   // Add event listeners
-  toggleModalEvents(eventsHandler, 'add', closeModal, modalBtns, modalContentLm, modalContainerLm, '.modal-overlay');
+  toggleModalEvents(eventsHandler, 'add', closeModal, modalBtns, modalContentLm, modalContainerLm, '.modal__overlay');
 }

@@ -30,7 +30,7 @@ const imageSliderLm = document.getElementById('image-slider');
 const tabsLm = document.getElementById('tabs');
 
 // Carousel
-new Carousel(imageCarouselLm, carouselImages);
+new Carousel(imageCarouselLm, carouselImages, 'image-slider');
 
 // Modal
 openModalBtn.addEventListener('click', openModal);

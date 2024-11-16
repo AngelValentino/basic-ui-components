@@ -1,12 +1,12 @@
 export const accordionData =  [
   {
     id: 1,
-    title: 'CSS Grid ',
+    title: 'CSS Grid',
     description: `
-    <p>
-      The CSS grid layout module excels at dividing a page into major regions or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.
-    </p>
-  `
+      <p>
+        The CSS grid layout module excels at dividing a page into major regions or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.
+      </p>
+    `
   },
   {
     id: 2,
@@ -50,16 +50,16 @@ export class Accordion {
     this.lms.accordionLm.addEventListener('click', this.switchPanel.bind(this))    
   }
 
-
   // Toggles the visibility of the panel associated with the clicked title
   togglePanel(title) {
-    // Clear any previous timeouts for hiding panels
-    clearTimeout(this.activePanelHideTimId);
-    clearTimeout(this.othersPanelsHideTimId);
-    
-     // Get the ID of the active panel from the title's aria-controls attribute
-    const activePanelId = '#' + title.getAttribute("aria-controls");
-    const activePanel = this.lms.accordionLm.querySelector(activePanelId);
+    // Get the active panel using nextElmentSibling
+    let activePanel;
+    if (title.nextElementSibling) {
+      activePanel = title.nextElementSibling;
+    } 
+    else {
+      throw new Error('No active panel sibling found for title')
+    }
     
     // Loop through all the accordion panels and toggle them based on the active class
     this.lms.accordionPanelLms.forEach(panel => {
@@ -69,7 +69,9 @@ export class Accordion {
       
         // Update ARIA attributes to reflect the panel's state
         panel.setAttribute('aria-hidden', !isPanelActive);
-        title.setAttribute('aria-expanded', isPanelActive);
+        if (panel.previousElementSibling) {
+          panel.previousElementSibling.setAttribute('aria-expanded', isPanelActive);
+        }
       } 
       else {
         if (this.keepOthersClosed) {
@@ -78,7 +80,9 @@ export class Accordion {
 
           // Add ARIA attributes
           panel.setAttribute('aria-hidden', true);
-          title.setAttribute('aria-expanded', false);
+          if (panel.previousElementSibling) {
+            panel.previousElementSibling.setAttribute('aria-expanded', false);
+          }
         }
       }
     });
@@ -108,7 +112,7 @@ export class Accordion {
           <div aria-hidden="true" id="accordion__content-wrapper-${id}" class="accordion__content-wrapper">
             <div>
               <div class="accordion__content">
-              ${description}
+                ${description}
               </div>
             </div>
           </div>

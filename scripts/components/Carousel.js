@@ -34,16 +34,16 @@ export const carouselImages = [
 ]
 
 export class Carousel {
-  constructor(root, contentArray) {
+  constructor(root, contentArray, id) {
     // Ensure the root element is provided
     if (!root) throw new Error('Root element is required');
     // Ensure the root element has an id attribute
-    if (!root.hasAttribute('id')) throw new Error('Root element does not have an id attribute');
+    if (!id) throw new Error('An ID argument is required to be used in the slider for accessibility purposes');
     // Ensure images array is provided and not empty
     if (!contentArray || contentArray.length === 0) throw new Error('Content array element is required and must not be empty');
 
     // Generate the carousel HTML and insert it into the root element
-    root.innerHTML = Carousel.generateCarousel(contentArray, root.id);
+    root.innerHTML = Carousel.generateCarousel(contentArray, id);
     
     // DOM references
     this.lms = {
@@ -72,7 +72,6 @@ export class Carousel {
   setSliderButtonVisibility() {
     // Maximum scrollable width of the carousel
     const maxScrollLeft = this.lms.sliderLm.scrollWidth - this.lms.sliderLm.clientWidth;
-  
     // Current scroll position
     const currentScrollLeft = this.lms.sliderLm.scrollLeft;
   
