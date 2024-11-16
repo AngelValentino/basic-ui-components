@@ -108,7 +108,7 @@ p {
   transition: background-color 0.15s;
 }
 
-.modal__container {
+.modal {
   position: fixed;
   inset: 0;
   z-index: 20;
@@ -183,7 +183,7 @@ p {
 
 /* ACCORDION */
 
-.accordion-container {
+.accordion {
   list-style: none;
   border-radius: 10px;
   border: 1px solid #e2e2e2;
@@ -193,16 +193,16 @@ p {
   border-bottom: 1px solid #e2e2e2;
 }
 
-.accordion-container li:last-child .accordion__content-wrapper {
+.accordion li:last-child .accordion__content-wrapper {
   border: none;
 }
 
-.accordion-container li:first-child .accordion__title {
+.accordion li:first-child .accordion__title {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.accordion-container li:last-child .accordion__title {
+.accordion li:last-child .accordion__title {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -228,11 +228,11 @@ p {
   will-change: transform;
 }
 
-.accordion-panel.active .accordion__icon {
+.accordion__panel-container.active .accordion__icon {
   transform: rotate(-180deg);
 }
 
-.accordion-panel.active .accordion__title  {
+.accordion__panel-container.active .accordion__title  {
   background-color: transparent;
 }
 
@@ -242,7 +242,7 @@ p {
   transition: grid-template-rows 0.25s;
 }
 
-.accordion-panel.active .accordion__content-wrapper {
+.accordion__panel-container.active .accordion__content-wrapper {
   grid-template-rows: 1fr;
 }
 

@@ -25,7 +25,7 @@ import {
 
 const imageCarouselLm = document.getElementById('image-carousel');
 const openModalBtn = document.getElementById('open-modal-btn');
-const accordionContainerLm = document.getElementById('accordion-container');
+const accordionContainerLm = document.getElementById('accordion');
 const imageSliderLm = document.getElementById('image-slider');
 const tabsLm = document.getElementById('tabs');
 

@@ -100,7 +100,7 @@ export class Accordion {
   static generateAccordionPanels(accordionData) {
     return accordionData.map(({ id, title, description }) => (
       `
-        <li class="accordion-panel">
+        <li class="accordion__panel-container">
           <button aria-controls="accordion__content-wrapper-${id}" aria-expanded="false" class="accordion__title">
             <p class="accordion-title">
               ${title}

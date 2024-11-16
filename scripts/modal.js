@@ -5,7 +5,7 @@ let closeModalTimId;
 export function openModal() {
   const eventsHandler = {};
 
-  const modalContainerLm = document.getElementById('modal__container');
+  const modalContainerLm = document.getElementById('modal');
   const modalContentLm = document.getElementById('modal__content');
   const modalOverlayLm = document.getElementById('modal__overlay');
   const modalBtns = [...modalContentLm.querySelectorAll('button')];
