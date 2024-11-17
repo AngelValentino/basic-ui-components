@@ -83,11 +83,13 @@ export class Tabs {
       if (tab !== currentTab) {
         // Tab is not the clicked/current one
         tab.setAttribute('aria-selected', false);
+        tab.setAttribute('aria-expanded', false);
         tab.classList.remove('active');
       } 
       else {
         // Tabs is the clicked/current one
         tab.setAttribute('aria-selected', true);
+        tab.setAttribute('aria-expanded', true);
         tab.classList.add('active');
       }
     });
