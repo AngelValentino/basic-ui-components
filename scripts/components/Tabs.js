@@ -90,13 +90,13 @@ export class Tabs {
         tab.setAttribute('aria-selected', true);
         tab.classList.add('active');
       }
-    })
+    });
   }
 
   // Toggles the visibility of the tab panels based on the currently selected tab
-  togglePanel(tab) {
+  togglePanel(currentTab) {
     // Get the ID of the active panel from the tab's aria-controls attribute
-    const activePanelId = '#' + tab.getAttribute("aria-controls");
+    const activePanelId = '#' + currentTab.getAttribute("aria-controls");
     const activePanel = this.lms.tabsLm.querySelector(activePanelId);
   
     // Loop through all tab panels and toggle them based on the active tab
@@ -119,26 +119,15 @@ export class Tabs {
     }
   }
 
-  // Sets the initial active tab title based on the position parameter
-  setInitialActiveTitle(position) {
-    const tab = this.lms.tabTitleLms[position]; // Get the tab at the given position
-    tab.classList.add('active');
-    tab.setAttribute('aria-selected', true);
-  }
-
-  // Sets the initial active tab panel based on the position parameter
-  setInitialActivePanel(postion) {
-    this.togglePanel(this.lms.tabTitleLms[postion])
-  }
-
   setInitialActiveTab(position = 1) {
     // Validate the position argument to ensure it is within the range of the available tabs Array
     if (position > this.lms.tabTitleLms.length || position < 1) {
       throw new Error('Position must be at least 1 and not be greater than the tabs data list length.')
     }
     position--; // Convert the position to an index
-    this.setInitialActiveTitle(position);
-    this.setInitialActivePanel(position);
+    const tab = this.lms.tabTitleLms[position]; // Get the tab title at the given position
+    this.togglePanel(tab);
+    this.toggleTitle(tab);
   }
 
   // Generates HTML for the tab titles based on tabsData
